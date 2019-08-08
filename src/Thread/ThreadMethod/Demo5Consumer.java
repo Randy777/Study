@@ -8,6 +8,7 @@ public class Demo5Consumer extends Thread{
         this.demo5ResourceThread = demo5ResourceThread;
     }
 
+    @Override
     public void run(){
         while (true){
             try {
