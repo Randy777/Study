@@ -9,6 +9,12 @@ public class CopyFile {
     public static void main(String[] args) throws IOException {
         String src = "";
         String dst = "";
+        File file = new File(src);
+        file.canRead();
+        file.delete();
+        FileOutputStream fileOutputStream = new FileOutputStream(src);
+        byte[] bytes = new byte[1024];
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         copyFileUseNIO(src,dst);
     }
 
