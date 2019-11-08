@@ -1,4 +1,4 @@
-package buffered.NIO.NIODome1;
+package buffered.NIO.NIOSection2;
 
 import java.io.BufferedReader;
 import java.io.IOException;

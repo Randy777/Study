@@ -1,6 +1,4 @@
-package buffered.NIO.NIODome1;
-
-import javafx.print.Printer;
+package buffered.NIO.NIOSection2;
 
 import java.io.BufferedReader;
 import java.io.IOException;

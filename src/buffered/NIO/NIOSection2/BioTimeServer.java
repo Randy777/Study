@@ -1,6 +1,4 @@
-package buffered.NIO.NIODome1;
-
-import buffered.NIO.NIOSection2.TimeServerHandler;
+package buffered.NIO.NIOSection2;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -29,6 +27,8 @@ public class BioTimeServer {
             serverSocket = new ServerSocket(port);
             System.out.println(port);
             Socket socket = null;
+            TimeServerHandlerExecutePool timeServerHandlerExecutePool = new
+                    TimeServerHandlerExecutePool(50,10000);
             while (true){
                 socket = serverSocket.accept();
                 new Thread(new TimeServerHandler(socket)).start();
