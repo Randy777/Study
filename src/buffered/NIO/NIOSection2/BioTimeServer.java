@@ -20,8 +20,6 @@ public class BioTimeServer {
 
             }
         }
-
-
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
