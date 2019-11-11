@@ -1,9 +1,5 @@
 package buffered.NIO.NIOSection2;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
-import java.io.IOException;
-
 public class NioTimeServer {
 
     public static void main(String[] args) {
@@ -16,8 +12,6 @@ public class NioTimeServer {
             }
         }
         MultplexerTimeServer timeServer = new MultplexerTimeServer(port);
-
-//
         new Thread(timeServer,"NIO-MTS-001").start();
     }
 }
