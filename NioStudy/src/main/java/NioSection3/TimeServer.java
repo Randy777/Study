@@ -1,12 +1,16 @@
 package NioSection3;
 
-import NioSection3.Handle.ChildChannelHandler;
+import NioSection3.Handle.TimeServerHandle;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 public class TimeServer {
 
@@ -30,19 +34,34 @@ public class TimeServer {
                     option(ChannelOption.SO_BACKLOG, 1024).
                     childHandler(new ChildChannelHandler());
             //用于异步操作的回调通知
-            ChannelFuture channelFuture = serverBootstrap.
-                    bind(port).//绑定端口，同步等待成功
-                    sync();
-            channelFuture.
-                    channel().
-                    closeFuture().
-                    sync();
+            ChannelFuture channelFuture = serverBootstrap
+                    .bind(port)//绑定端口，同步等待成功
+                    .sync();
+            channelFuture
+                    .channel()
+                    .closeFuture()
+                    .sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }finally {
             //释放线程池资源
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
+        }
+    }
+
+    private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
+
+        protected void initChannel(SocketChannel socketChannel) throws Exception {
+            socketChannel
+                    .pipeline()
+                    .addLast(new LineBasedFrameDecoder(1024));
+            socketChannel
+                    .pipeline()
+                    .addLast(new StringDecoder());
+            socketChannel
+                    .pipeline()
+                    .addLast(new TimeServerHandle());
         }
     }
 }

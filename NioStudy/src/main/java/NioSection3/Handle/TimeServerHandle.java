@@ -23,7 +23,11 @@ public class TimeServerHandle extends ChannelHandlerAdapter {
              aaa = "bbb";
         }
         ByteBuf resp = Unpooled.copiedBuffer(aaa.getBytes());
-        channelHandlerContext.write(resp);
+        channelHandlerContext.writeAndFlush(resp);
     }
 
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        ctx.close();
+    }
 }
