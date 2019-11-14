@@ -13,6 +13,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
 public class EchoClient {
@@ -37,11 +38,16 @@ public class EchoClient {
                 .option(ChannelOption.TCP_NODELAY,true)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        //分隔符“$_”解决拆包/粘包问题
                         ByteBuf delimiter = Unpooled.copiedBuffer("$_".getBytes());
                         socketChannel
                                 .pipeline()
                                 .addLast(new DelimiterBasedFrameDecoder(1024,
                                         delimiter));
+                        //固定长度解码器，解决拆包/粘包问题
+//                        socketChannel
+//                                .pipeline()
+//                                .addLast(new FixedLengthFrameDecoder(20));
                         socketChannel
                                 .pipeline()
                                 .addLast(new StringDecoder());

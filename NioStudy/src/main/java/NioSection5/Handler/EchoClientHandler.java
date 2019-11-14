@@ -1,9 +1,11 @@
 package NioSection5.Handler;
 
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
+@ChannelHandler.Sharable
 public class EchoClientHandler extends ChannelHandlerAdapter {
 
     static final String ECHO_REQ = "Welcome to Netty.$_";
