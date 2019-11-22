@@ -1,5 +1,8 @@
 package dP;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @date 2019-11-22
  * @author zy
@@ -19,18 +22,23 @@ public class MaxZiDuan {
     }
 
     private static int MaxSum(int n, int[] a) {
-        int sum=0,b=0;
+        int sum=0,b=0,count1=0,count2=0;
+        //List<Integer> list;
         for(int i=1;i<=n;i++){
             if(b<0){
                 b=a[i];
+                count1 = i;
             }
             else{
                 b=b+a[i];
             }
             if(b>sum){
                 sum=b;
+                count2 = i;
             }
         }
+        System.out.println(count1 + ":" + count2);
+
         return sum;
     }
 }
