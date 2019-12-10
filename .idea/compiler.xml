@@ -17,10 +17,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="NioStudy" />
+        <module name="ServletStudy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="NioStudy" target="1.5" />
+      <module name="ServletStudy" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

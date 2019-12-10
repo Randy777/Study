@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/NioStudy/pom.xml" />
+        <option value="$PROJECT_DIR$/ServletStudy/pom.xml" />
       </list>
     </option>
   </component>

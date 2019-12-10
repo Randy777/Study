@@ -1,7 +1,9 @@
 package Lambda;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zy
@@ -18,16 +20,24 @@ public class Demo1 {
             double price = cost + .12*cost;
             System.out.println(price);
         }
-        System.out.println("=====================");
         test1(costBeforeTax);
+        System.out.println("==========test1===========");
         double total = 0;
         for (Integer cost : costBeforeTax) {
             double price = cost + .12*cost;
             total = total + price;
         }
         System.out.println("Total : " + total);
-        System.out.println("=====================");
         test2(costBeforeTax);
+        System.out.println("==========test2===========");
+        List<String> stringList = Arrays.asList("aaa", "bbb", "ccc", "ddd", "eeee");
+        test3(stringList);
+    }
+
+    //流提供了一个 filter() 方法，接受一个 Predicate 对象，即可以传入一个lambda表达式作为过滤逻辑。
+    private static void test3(List<String> costBeforeTax) {
+        List<String> filtered = costBeforeTax.stream().filter(x -> x.length()> 2).collect(Collectors.toList());
+        filtered.stream().map(str -> str).forEach(System.out::println);
     }
 
     private static void test2(List<Integer> costBeforeTax) {

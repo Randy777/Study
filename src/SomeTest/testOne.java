@@ -24,6 +24,6 @@ public class testOne {
             }
         }
         list.stream().map((no) -> no).forEach(System.out::print);
-        integerList.stream().map((no) -> no.toString()).forEach(System.out::print);
+        integerList.stream().map((no) -> no).forEach(System.out::print);
     }
 }
