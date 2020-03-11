@@ -1,6 +1,6 @@
 package SomeTest;
 
-public class ThisTest {
+public class  ThisTest {
 
     public void jump(){
         System.out.println("jump");
