@@ -30,26 +30,43 @@ public class LeetCode148 {
             System.out.print(out);
         }
     }
-
-
-
+    //例：[4,2,1,3]
     public ListNode insertionSortList(ListNode head) {
-        if ( head == null || head.next == null){
+
+        if (head == null || head.next == null){
             return head;
         }
         return mergeSort(head);
     }
 
     private ListNode mergeSort(ListNode head) {
-        //分治
-        ListNode listS = head;
-        ListNode listT = head;
-        //遍历，对链表二分
-        while (listS.next.next != null){
-            listS = listS.next;
-            listT = listT.next.next;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        return head;
+        ListNode mid = slow.next;
+        slow.next = null;
+
+        ListNode listLeft = mergeSort(head);
+        ListNode listRight = mergeSort(mid);
+
+        ListNode prev = new ListNode(0);
+        ListNode node = prev;
+
+        while (listLeft != null && listRight != null){
+            if (listLeft.val < listRight.val){
+                node.next = listLeft;
+                listLeft = listLeft.next;
+            }else {
+                node.next = listRight;
+                listRight = listRight.next;
+            }
+            node = node.next;
+        }
+        node.next = listLeft != null ? listLeft : listRight;
+        return prev.next;
     }
 
 }
