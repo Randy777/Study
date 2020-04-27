@@ -13,6 +13,7 @@ public class LeetCode55 {
     public static void main(String[] args) {
         int[] ints = {2,3,1,1,4};
         canJump(ints);
+//        canJump2(ints);
     }
     public static boolean canJump(int[] nums) {
         //贪心算法
