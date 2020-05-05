@@ -12,9 +12,36 @@ public class LeetCode1283 {
     public static void main(String[] args) {
         int[] ints = {2,3,5,7,11};
         int t = 6;
-        smallestDivisor(ints,t);
+        System.out.println(smallestDivisor(ints, t));
     }
     public static int smallestDivisor(int[] nums, int threshold) {
-        return 1;
+        int s = 0,mid = 0,k = 0;
+        mid = nums.length / 2;
+        s = getNum(mid,nums);
+        while (true){
+            if (s == threshold){
+                break;
+            }else if (s > threshold){
+                mid = mid /2;
+            }else if (s < threshold){
+                mid = (mid + nums.length) / 2;
+                k = s;
+            }
+            s = getNum(mid,nums);
+        }
+
+        return s;
+    }
+    public static int getNum(int mid,int[] nums){
+        int s = 0,k = 0;
+        for (int i = 0; i < nums.length; i++){
+            k = nums[mid];
+            if (nums[i] % k == 0){
+                s = nums[i] / k + 1 + s;
+            }else {
+                s = nums[i] / k + s;
+            }
+        }
+        return s;
     }
 }
