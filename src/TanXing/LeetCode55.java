@@ -21,8 +21,10 @@ public class LeetCode55 {
         int n = ints.length;
         boolean[] f = new boolean[n];
         for (int j = 1; j < n; ++j){
+            //初始化
             f[j] = false;
             for (int i = 0; i < j; ++i){
+                //f[j] = f[i] && i + ints[i] >= j
                 if (f[i] && i + ints[i] >= j){
                     f[j] = true;
                     break;
