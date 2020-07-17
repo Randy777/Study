@@ -12,8 +12,8 @@ import java.util.List;
  * */
 public class LeetCode350 {
     public static void main(String[] args) {
-        int[] nums1 = {4,9,5};
-        int[] nums2 = {9,4,9,8,4};
+        int[] nums1 = {1};
+        int[] nums2 = {1};
         System.out.println(intersect(nums1, nums2).length);
     }
     public static int[] intersect(int[] nums1, int[] nums2) {
@@ -22,22 +22,22 @@ public class LeetCode350 {
         int n2 = nums2.length;
         quickSort(nums1,0,nums1.length - 1);
         quickSort(nums2,0,nums2.length - 1);
-        return n1 > n2 ? divideArr(nums1,nums2) :divideArr(nums2,nums1);
+        return n1 > n2 ? divideArr(nums1,nums2) : divideArr(nums2,nums1);
     }
     //arr1长，arr2短
     public static int[] divideArr(int[] arr1,int[] arr2){
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < arr2.length; i++){
-            int left = 0,right = arr1.length,mid;
-            while (right > left){
+            int left = 0,right = arr1.length - 1,mid;
+            while (right >= left){
                 mid = (right + left + 1) / 2;
                 if (arr1[mid] == arr2[i]){
                     list.add(arr1[mid]);
                     break;
                 }else if (arr1[mid] > arr2[i]){
-                    left = mid + 1;
-                }else {
                     right = mid - 1;
+                }else {
+                    left = mid + 1;
                 }
             }
         }
