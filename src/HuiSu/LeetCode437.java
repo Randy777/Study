@@ -1,6 +1,12 @@
 package HuiSu;
 
-import javax.swing.tree.TreeNode;
+import Tools.TreeNode;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static Tools.TreeNodeSolution.stringToTreeNode;
 
 /**
  *给定一个二叉树，它的每个结点都存放着一个整数值。
@@ -31,8 +37,27 @@ import javax.swing.tree.TreeNode;
  * 思路：回溯，遍历每条路径，遇到和为target，结束count+1
  * */
 public class LeetCode437 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while ((line = in.readLine()) != null) {
+            Tools.TreeNode root = stringToTreeNode(line);
+            line = in.readLine();
+            int sum = Integer.parseInt(line);
 
-    public int pathSum(TreeNode root, int sum) {
-        return 1;
+            int ret = new Solution437().pathSum(root, sum);
+
+            String out = String.valueOf(ret);
+
+            System.out.print(out);
+        }
     }
 }
+
+class Solution437 {
+    public int pathSum(TreeNode root, int sum) {
+        return sum;
+    }
+}
+
+
