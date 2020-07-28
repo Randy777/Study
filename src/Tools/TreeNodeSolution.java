@@ -10,21 +10,17 @@ public class TreeNodeSolution {
         if (input.length() == 0) {
             return null;
         }
-
         String[] parts = input.split(",");
         String item = parts[0];
         TreeNode root = new TreeNode(Integer.parseInt(item));
         Queue<TreeNode> nodeQueue = new LinkedList<>();
         nodeQueue.add(root);
-
         int index = 1;
         while (!nodeQueue.isEmpty()) {
             TreeNode node = nodeQueue.remove();
-
             if (index == parts.length) {
                 break;
             }
-
             item = parts[index++];
             item = item.trim();
             if (!item.equals("null")) {
@@ -32,11 +28,9 @@ public class TreeNodeSolution {
                 node.left = new TreeNode(leftNumber);
                 nodeQueue.add(node.left);
             }
-
             if (index == parts.length) {
                 break;
             }
-
             item = parts[index++];
             item = item.trim();
             if (!item.equals("null")) {
