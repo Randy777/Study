@@ -6,8 +6,16 @@ package Face;
  * */
 public class test1 {
     public static void main(String[] args) {
+        if(true && test() && false){
+            System.out.println("a");
+        }
         String a = "abccccdd";
         System.out.println(longestPalindrome(a));
+    }
+
+    public static boolean test(){
+        System.out.println("bb");
+        return true;
     }
     public static int longestPalindrome(String s) {
 
